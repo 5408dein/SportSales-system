@@ -1,0 +1,43 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: gateway
+  config:
+    import: "optional:nacos:gateway.yaml"
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
+        ip: 127.0.0.1
+    gateway:
+      server:
+        webflux:
+          routes:
+            # 精确匹配 /api/customer/fromOrders 必须放最前（否则被 /api/customer/** 抢先）
+            - id: order-customer-from-orders
+              uri: lb://order-service
+              predicates:
+                - Path=/api/customer/fromOrders
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/api/login,/api/register,/api/customer/**,/api/message/**
+            - id: order-service
+              uri: lb://order-service
+              predicates:
+                - Path=/api/order/**,/api/orderDetail/**
+            - id: product-service
+              uri: lb://product-service
+              predicates:
+                - Path=/api/product/**,/api/manufacturer/**,/api/purchase/**
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowed-origin-patterns: "*"
+                allowed-methods: "*"
+                allowed-headers: "*"
+                allow-credentials: true
+                max-age: 3600
