@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salesystem.product.mapper.ManufacturerMapper">
+
+    <select id="findAll" resultType="com.salesystem.product.entity.Manufacturer">
+        select * from manufacturer
+    </select>
+
+    <select id="findById" resultType="com.salesystem.product.entity.Manufacturer">
+        select * from manufacturer where manufacturer_id = #{id}
+    </select>
+
+    <insert id="insert">
+        insert into manufacturer
+        (manufacturer_code, manufacturer_name, contact_person, phone, email, address)
+        values
+        (#{manufacturerCode}, #{manufacturerName}, #{contactPerson}, #{phone}, #{email}, #{address})
+    </insert>
+
+    <update id="update">
+        update manufacturer
+        set manufacturer_code = #{manufacturerCode},
+            manufacturer_name = #{manufacturerName},
+            contact_person = #{contactPerson},
+            phone = #{phone},
+            email = #{email},
+            address = #{address}
+        where manufacturer_id = #{manufacturerId}
+    </update>
+
+    <delete id="delete">
+        delete from manufacturer where manufacturer_id = #{id}
+    </delete>
+
+</mapper>
