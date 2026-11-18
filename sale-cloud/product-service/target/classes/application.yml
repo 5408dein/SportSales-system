@@ -1,0 +1,39 @@
+server:
+  port: 8102
+
+spring:
+  application:
+    name: product-service
+  config:
+    import: "optional:nacos:product-service.yaml"
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
+        ip: 127.0.0.1
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/sale_system?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8
+    username: root
+    password: 881011
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    enabled: false
+    host: 127.0.0.1
+    port: 6379
+    timeout: 3000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 4
+        min-idle: 2
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.salesystem.product.entity
+  configuration:
+    map-underscore-to-camel-case: true
