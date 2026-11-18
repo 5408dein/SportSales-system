@@ -1,0 +1,11 @@
+com\salesystem\common\dto\CustomerUpsertRequest.class
+com\salesystem\common\result\Result.class
+com\salesystem\common\dto\ProductDTO.class
+com\salesystem\common\dto\StockDeductRequest.class
+com\salesystem\common\dto\MessageSendRequest.class
+com\salesystem\common\dto\StockRestoreRequest.class
+com\salesystem\common\exception\BusinessException.class
+com\salesystem\common\dto\CustomerDTO.class
+com\salesystem\common\dto\StockDeductResult.class
+com\salesystem\common\dto\StockDeductItem.class
+com\salesystem\common\exception\GlobalExceptionHandler.class

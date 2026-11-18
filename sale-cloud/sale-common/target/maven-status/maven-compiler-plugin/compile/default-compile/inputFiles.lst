@@ -1,0 +1,11 @@
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\dto\CustomerDTO.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\dto\CustomerUpsertRequest.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\dto\MessageSendRequest.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\dto\ProductDTO.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\dto\StockDeductItem.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\dto\StockDeductRequest.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\dto\StockDeductResult.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\dto\StockRestoreRequest.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\exception\BusinessException.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\exception\GlobalExceptionHandler.java
+D:\你猜\数据库课设\sale-cloud\sale-common\src\main\java\com\salesystem\common\result\Result.java
