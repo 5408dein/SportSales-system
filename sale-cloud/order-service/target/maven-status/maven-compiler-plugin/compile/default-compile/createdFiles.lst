@@ -1,0 +1,16 @@
+com\salesystem\order\OrderServiceApplication.class
+com\salesystem\order\service\OrdersService.class
+com\salesystem\order\client\UserClient.class
+com\salesystem\order\entity\OrderDetail.class
+com\salesystem\order\mapper\OrderDetailMapper.class
+com\salesystem\order\service\OrderLocalTxService.class
+com\salesystem\order\service\OrderDetailService.class
+com\salesystem\order\controller\OrderDetailController.class
+com\salesystem\order\mapper\OrdersMapper.class
+com\salesystem\order\service\impl\OrderDetailServiceImpl.class
+com\salesystem\order\controller\OrderController.class
+com\salesystem\order\client\ProductClient.class
+com\salesystem\order\entity\Order.class
+com\salesystem\order\controller\CustomerOrderController.class
+com\salesystem\order\service\impl\OrdersServiceImpl.class
+com\salesystem\order\service\OrderCreateSaga.class
