@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salesystem.order.mapper.OrderDetailMapper">
+
+    <select id="findAll" resultType="com.salesystem.order.entity.OrderDetail">
+        select * from order_detail
+    </select>
+
+    <!-- 拆分后只查本服务表，商品名/厂家名由 Controller 经 Feign 补全 -->
+    <select id="findByOrderId" resultType="com.salesystem.order.entity.OrderDetail">
+        select * from order_detail where order_id = #{orderId}
+    </select>
+
+    <insert id="add" parameterType="com.salesystem.order.entity.OrderDetail"
+            useGeneratedKeys="true" keyProperty="detailId" keyColumn="detail_id">
+        insert into order_detail
+        (order_id, product_id, manufacturer_id, quantity, total_amount)
+        values
+        (#{orderId}, #{productId}, #{manufacturerId}, #{quantity}, #{totalAmount})
+    </insert>
+
+    <delete id="delete">
+        delete from order_detail where detail_id = #{detailId}
+    </delete>
+
+</mapper>
