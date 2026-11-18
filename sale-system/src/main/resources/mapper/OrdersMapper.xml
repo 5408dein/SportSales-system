@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salesystem.mapper.OrdersMapper">
+
+    <resultMap id="orderMap" type="com.salesystem.entity.Order">
+        <id property="orderId" column="order_id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="orderDate" column="order_date"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="shippingRequirement" column="shipping_requirement"/>
+        <result property="supplyFlag" column="supply_flag"/>
+        <result property="shippingDate" column="shipping_date"/>
+        <result property="totalWeight" column="total_weight"/>
+        <result property="freight" column="freight"/>
+        <result property="paymentStatus" column="payment_status"/>
+        <result property="receiver" column="receiver"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <result property="invoiceFlag" column="invoice_flag"/>
+        <result property="paymentMethod" column="payment_method"/>
+        <result property="totalAmount" column="total_amount"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="orderMap">
+        select o.*,
+               coalesce((select sum(od.total_amount) from order_detail od where od.order_id = o.order_id), 0) as total_amount
+        from orders o
+        order by o.order_id desc
+    </select>
+
+    <select id="findByCustomerId" resultMap="orderMap">
+        select o.*,
+               coalesce((select sum(od.total_amount) from order_detail od where od.order_id = o.order_id), 0) as total_amount
+        from orders o
+        where o.customer_id = #{customerId}
+        order by o.order_id desc
+    </select>
+
+    <insert id="create" parameterType="com.salesystem.entity.Order"
+            useGeneratedKeys="true" keyProperty="orderId" keyColumn="order_id">
+        insert into orders
+        (
+            order_no, order_date, customer_id, shipping_requirement,
+            supply_flag, shipping_date, total_weight, freight,
+            payment_status, receiver, phone, address,
+            invoice_flag, payment_method
+        )
+        values
+        (
+            #{orderNo}, #{orderDate}, #{customerId}, #{shippingRequirement},
+            #{supplyFlag}, #{shippingDate}, #{totalWeight}, #{freight},
+            #{paymentStatus}, #{receiver}, #{phone}, #{address},
+            #{invoiceFlag}, #{paymentMethod}
+        )
+    </insert>
+
+    <update id="updateStatus">
+        update orders
+        set payment_status = #{paymentStatus}
+        where order_id = #{orderId}
+    </update>
+
+    <update id="ship">
+        update orders
+        set payment_status = '2',
+            supply_flag = 'Y',
+            shipping_date = #{shippingDate}
+        where order_id = #{orderId}
+    </update>
+
+    <update id="markShortage">
+        update orders
+        set supply_flag = 'N'
+        where order_id = #{orderId}
+    </update>
+
+    <update id="restoreSupply">
+        update orders
+        set supply_flag = 'Y'
+        where order_id = #{orderId}
+    </update>
+
+    <delete id="delete">
+        delete from orders where order_id = #{orderId}
+    </delete>
+
+    <select id="paidOrders" resultMap="orderMap">
+        select * from orders
+        where payment_status = '3'
+        order by order_id desc
+    </select>
+
+    <select id="unpaidOrders" resultMap="orderMap">
+        select * from orders
+        where payment_status = '0'
+        order by order_id desc
+    </select>
+
+    <select id="unshippedOrders" resultMap="orderMap">
+        select * from orders
+        where payment_status = '1'
+        order by order_id desc
+    </select>
+
+    <select id="shortageOrders" resultMap="orderMap">
+        select * from orders
+        where supply_flag = 'N'
+        order by order_id desc
+    </select>
+
+</mapper>

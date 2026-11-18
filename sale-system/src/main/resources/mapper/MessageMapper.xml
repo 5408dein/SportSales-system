@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salesystem.mapper.MessageMapper">
+
+    <select id="findByCustomerId" resultType="com.salesystem.entity.Message">
+        select * from message
+        where customer_id = #{customerId}
+        order by create_time desc
+    </select>
+
+    <select id="countUnread" resultType="int">
+        select count(*) from message
+        where customer_id = #{customerId} and is_read = 0
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="messageId" keyColumn="message_id">
+        insert into message (customer_id, order_id, order_no, title, content, msg_type, create_time)
+        values (#{customerId}, #{orderId}, #{orderNo}, #{title}, #{content}, #{msgType}, now())
+    </insert>
+
+    <update id="markRead">
+        update message set is_read = 1 where message_id = #{messageId}
+    </update>
+
+    <update id="markAllRead">
+        update message set is_read = 1 where customer_id = #{customerId} and is_read = 0
+    </update>
+
+</mapper>

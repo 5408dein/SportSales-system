@@ -1,0 +1,10 @@
+# HTTPS 配置文件
+# 启动命令: mvnw spring-boot:run -Dspring-boot.run.profiles=ssl
+
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: 123456
+    key-store-type: PKCS12
+    key-alias: salesystem

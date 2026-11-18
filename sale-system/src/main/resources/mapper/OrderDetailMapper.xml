@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salesystem.mapper.OrderDetailMapper">
+
+    <select id="findAll"
+            resultType="com.salesystem.entity.OrderDetail">
+
+        select *
+        from order_detail
+
+    </select>
+
+    <select id="findByOrderId"
+            resultType="java.util.HashMap">
+
+        select
+
+            od.detail_id,
+
+            od.order_id,
+
+            p.description productName,
+
+            m.manufacturer_name manufacturerName,
+
+            od.quantity,
+
+            od.total_amount
+
+        from order_detail od
+
+                 left join product p
+                           on od.product_id = p.product_id
+
+                 left join manufacturer m
+                           on od.manufacturer_id = m.manufacturer_id
+
+        where od.order_id = #{orderId}
+
+    </select>
+
+    <insert id="add" parameterType="com.salesystem.entity.OrderDetail"
+            useGeneratedKeys="true" keyProperty="detailId" keyColumn="detail_id">
+        insert into order_detail
+        (
+            order_id,
+            product_id,
+            manufacturer_id,
+            quantity,
+            total_amount
+        )
+        values
+            (
+                #{orderId},
+                #{productId},
+                #{manufacturerId},
+                #{quantity},
+                #{totalAmount}
+            )
+    </insert>
+
+    <delete id="delete">
+
+        delete
+        from order_detail
+        where detail_id = #{detailId}
+
+    </delete>
+
+</mapper>
