@@ -3,8 +3,8 @@
     <div class="login-card">
       <div class="login-header">
         <span class="login-icon">🏀</span>
-        <h1>体育用品销售信息系统</h1>
-        <p>Sports Equipment Sales Management</p>
+        <h1>悦动体育商城</h1>
+        <p>YueDong Sports Mall</p>
       </div>
 
       <!-- 标签切换 -->

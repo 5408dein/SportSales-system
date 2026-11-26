@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
     <div class="page-header">
-      <h2>🏀 体育用品商城</h2>
+      <h2>🏀 悦动体育商城</h2>
       <button class="cart-btn" @click="goCart">
         🛒 购物车 <span class="cart-count" v-if="cartCount > 0">{{ cartCount }}</span>
       </button>
