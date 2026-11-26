@@ -1,6 +1,4 @@
-# 悦动体育商城
-
-> 基于 Spring Cloud Alibaba 微服务架构的体育用品进销存电商平台
+# 基于 Spring Cloud Alibaba 微服务架构的进销存电商平台
 
 原单体 `sale-system` 重构为「用户 / 商品 / 订单」3 个微服务 + 统一网关，接入 Nacos 实现服务注册发现与配置管理，前端 Vue 单页应用与后端接口无缝对接。
 
