@@ -3,7 +3,7 @@
     <div class="nav-left">
       <div class="logo">
         <span class="logo-icon">🏀</span>
-        <span class="logo-text">体育用品销售系统</span>
+        <span class="logo-text">悦动体育商城</span>
       </div>
       <nav class="nav-links">
         <template v-if="userRole === 'CUSTOMER'">
